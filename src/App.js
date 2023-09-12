@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import MovieCard from "./Components/Moviecard/MovieCard";
 
+
 function App() {
   const API_URL = "https://api.themoviedb.org/3";
   const [movies, setMovies] = useState([]);
@@ -26,9 +27,14 @@ function App() {
 
   return (
 
+    <div>
+      
      <div className='grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 max-w-[1620px] m-3 gap-10 text-[18px] font-bold'>
       {renderMovies()}
     </div>
+
+    </div>
+
 
   );
 }

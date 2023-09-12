@@ -6,11 +6,11 @@ const MovieCard = ({ movie }) => {
   const IMAGE_PATH = "https://image.tmdb.org/t/p/w342";
   console.log(movie);
   return (
-    <div className=' '>
+    <div className=' grid gri'>
       {movie.poster_path ? (
         <img src={IMAGE_PATH + movie.poster_path} alt='' />
       ) : null}
-      <h3> {movie.title}</h3>
+      <h3 > {movie.title}</h3>
     </div>
   );
 };
