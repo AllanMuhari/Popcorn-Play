@@ -7,17 +7,19 @@ import MovieCard from "./Components/Moviecard/MovieCard";
 function App() {
   const API_URL = "https://api.themoviedb.org/3";
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState([]);
   const [searchKey, setSearchKey] = useState();
   const fetchMovies = async (searchKey) => {
-    const type = 'discover'
+    const type = searchKey ? "search" : "discover";
     const {
       data: { results },
     } = await axios.get(`${API_URL}/${type}/movie`, {
       params: {
         api_key: process.env.REACT_APP_MOVIE_API_KEY,
-        query:searchKey 
+        query: searchKey,
       },
     });
+    setSelectedMovie(results);
     setMovies(results);
   };
 
@@ -37,22 +39,36 @@ function App() {
     <div>
       <div className='m-auto'>
         <header className=' flex gap-7'>
-          <h1 className='flex m-auto'>Movie Box</h1>
-          <form onSubmit={searchMovies} className="flex ">
+          <span className='flex m-auto'>Movie Box</span>
+          <form onSubmit={searchMovies} className='flex '>
             <input
-              className=' flex  border-2 w-[10rem] lg:w-[30rem] p-1 m-2 lg:mr-[5rem] border-gray-500'
+              className='flex border-2 w-[10rem] lg:w-[30rem] p-1 m-2 lg:mr-[5rem] border-gray-500'
               type='text'
               placeholder='What do you want to watch ?'
+              value={searchKey}
               onChange={(e) => setSearchKey(e.target.value)}
             />
-            <button className="rounded bg-slate-500 w-[4rem] m-3" type={"submit"}>Search</button>
+
+            <button
+              className='rounded bg-slate-500 w-[4rem] m-3'
+              type={"submit"}
+            >
+              Search
+            </button>
           </form>
 
           <div className='hidden lg:flex m-auto'>
             <h1>Sign in</h1>
           </div>
         </header>
-         {searchKey} 
+        <div className=''>
+          {selectedMovie && (
+            <div>
+              <h1>{selectedMovie.title}</h1>
+              {/* Render additional movie details here */}
+            </div>
+          )}
+        </div>
       </div>
 
       <div className='moviecards'>
