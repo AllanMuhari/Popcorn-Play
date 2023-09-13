@@ -1,10 +1,12 @@
 /** @format */
 import { useEffect, useState } from "react";
+import "./App.css";
 import axios from "axios";
 import MovieCard from "./Components/Moviecard/MovieCard";
 // import { Router } from "react-router";
 
 function App() {
+  const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
   const API_URL = "https://api.themoviedb.org/3";
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState([]);
@@ -28,7 +30,9 @@ function App() {
   }, []);
 
   const renderMovies = () =>
-    movies.map((movie) => <MovieCard key={movie.id} movie={movie} />);
+    movies.map((movie) => (
+      <MovieCard key={movie.id} movie={movie} selectMovie={setSelectedMovie} />
+    ));
 
   const searchMovies = (e) => {
     e.preventDefault();
@@ -37,9 +41,12 @@ function App() {
 
   return (
     <div>
-      <div className='m-auto'>
-        <header className=' flex gap-7'>
-          <span className='flex m-auto'>Movie Box</span>
+      <div className='w-full h-[30rem] lg:h-full   object-cover bg-no-repeat bg-center'
+          style={{
+            backgroundImage: `url('${IMAGE_PATH}${selectedMovie.backdrop_path}')`,
+          }}>
+        <header className=' flex flex-row gap-7'>
+          <span className=' m-auto'>Movie Box</span>
           <form onSubmit={searchMovies} className='flex '>
             <input
               className='flex border-2 w-[15rem] lg:w-[30rem] p-1 m-2 lg:mr-[5rem] border-gray-500'
@@ -61,13 +68,19 @@ function App() {
             <h1>Sign in</h1>
           </div>
         </header>
-        <div className='flex flex-col'>
-            <div>
-              <img className="w-full h-[25rem] lg:h-[50rem] lg:object-cover  " src={`https://image.tmdb.org/t/p/original/${selectedMovie.backdrop_path}`} alt="" />
-              <h1 className="text-xl font-bold  flex m-auto">{selectedMovie.title}</h1>
-              <p className="text-xl text-center">{selectedMovie.overview ? selectedMovie.overview : null }</p>
-              <button className="rounded bg-slate-500 w-[5rem] m-3 cursor-pointer">Play Trailer</button>
-            </div>
+        <div
+        >
+          <div className='mt-[5rem] lg:mt-[25rem] lg:ml-[18rem]'>
+            <button className='content-end rounded bg-slate-500 w-[5rem]  '>
+              Play Trailer
+            </button>
+            <h1 className='text-xl font-bold text-slate-200'>
+              {selectedMovie.title}
+            </h1>
+            <p className=' flex w-[25rem] h-[8rem] text-white '>
+              {selectedMovie.overview ? selectedMovie.overview : null}
+            </p>
+          </div>
         </div>
       </div>
 
