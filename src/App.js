@@ -41,12 +41,14 @@ function App() {
 
   return (
     <div>
-      <div className='w-full h-[30rem] lg:h-full   object-cover bg-no-repeat bg-center'
-          style={{
-            backgroundImage: `url('${IMAGE_PATH}${selectedMovie.backdrop_path}')`,
-          }}>
-        <header className=' flex flex-row gap-7'>
-          <span className=' m-auto'>Movie Box</span>
+      <div
+        className='w-full h-[30rem] lg:h-full   object-cover bg-no-repeat bg-center'
+        style={{
+          backgroundImage: `url('${IMAGE_PATH}${selectedMovie.backdrop_path}')`,
+        }}
+      >
+        <header className=' flex flex-row lg:mr-[20rem]'>
+          <span className='m-auto text-white font-bold'>Movie Box</span>
           <form onSubmit={searchMovies} className='flex '>
             <input
               className='flex border-2 w-[15rem] lg:w-[30rem] p-1 m-2 lg:mr-[5rem] border-gray-500'
@@ -64,12 +66,13 @@ function App() {
             </button>
           </form>
 
-          <div className='hidden lg:flex m-auto'>
-            <h1>Sign in</h1>
+          <div className='flex'>
+            <h1 className=' text-white font-bold cursor-pointer m-auto'>
+              Sign in
+            </h1>
           </div>
         </header>
-        <div
-        >
+        <div>
           <div className='mt-[5rem] lg:mt-[25rem] lg:ml-[18rem]'>
             <button className='content-end rounded bg-slate-500 w-[5rem]  '>
               Play Trailer
