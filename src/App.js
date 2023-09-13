@@ -19,7 +19,7 @@ function App() {
         query: searchKey,
       },
     });
-    setSelectedMovie(results);
+    setSelectedMovie(results[0]);
     setMovies(results);
   };
 
@@ -42,7 +42,7 @@ function App() {
           <span className='flex m-auto'>Movie Box</span>
           <form onSubmit={searchMovies} className='flex '>
             <input
-              className='flex border-2 w-[10rem] lg:w-[30rem] p-1 m-2 lg:mr-[5rem] border-gray-500'
+              className='flex border-2 w-[15rem] lg:w-[30rem] p-1 m-2 lg:mr-[5rem] border-gray-500'
               type='text'
               placeholder='What do you want to watch ?'
               value={searchKey}
@@ -61,13 +61,13 @@ function App() {
             <h1>Sign in</h1>
           </div>
         </header>
-        <div className=''>
-          {selectedMovie && (
+        <div className='flex flex-col'>
             <div>
-              <h1>{selectedMovie.title}</h1>
-              {/* Render additional movie details here */}
+              <img className="w-full h-[25rem] lg:h-[50rem] lg:object-cover  " src={`https://image.tmdb.org/t/p/original/${selectedMovie.backdrop_path}`} alt="" />
+              <h1 className="text-xl font-bold  flex m-auto">{selectedMovie.title}</h1>
+              <p className="text-xl text-center">{selectedMovie.overview ? selectedMovie.overview : null }</p>
+              <button className="rounded bg-slate-500 w-[5rem] m-3 cursor-pointer">Play Trailer</button>
             </div>
-          )}
         </div>
       </div>
 
