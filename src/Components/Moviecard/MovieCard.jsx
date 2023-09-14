@@ -6,7 +6,7 @@ const MovieCard = ({ movie, selectMovie }) => {
   console.log(movie);
   return (
     <div onClick={() => selectMovie(movie)} className={"movie"}>
-      <div className='cursor-pointer'>
+      <div className='cursor-pointer' data-testid="movie-card">
         {movie.poster_path ? (
           <img src={IMAGE_PATH + movie.poster_path} alt={movie.title} />
         ) : (

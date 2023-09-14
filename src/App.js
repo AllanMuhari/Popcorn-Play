@@ -42,6 +42,7 @@ function App() {
   return (
     <div>
       <div
+        data-testid="movie-poster"
         className='w-full h-[30rem] lg:h-full   object-cover bg-no-repeat bg-center'
         style={{
           backgroundImage: `url('${IMAGE_PATH}${selectedMovie.backdrop_path}')`,
@@ -77,7 +78,7 @@ function App() {
             <button className='content-end rounded bg-slate-500 w-[5rem]  '>
               Play Trailer
             </button>
-            <h1 className='text-xl font-bold text-slate-200'>
+            <h1 className='text-xl font-bold text-slate-200' data-testid="movie-title">
               {selectedMovie.title}
             </h1>
             <p className=' flex w-[25rem] h-[8rem] text-white '>
@@ -87,7 +88,7 @@ function App() {
         </div>
       </div>
 
-      <div className='moviecards'>
+      <div className='moviecards' data-testid="movie-card">
         <div className='flex'>
           <h1 className='font-extrabold text-[25px] flex justify-center content-center lg:ml-[10rem]'>
             Featured Movies
