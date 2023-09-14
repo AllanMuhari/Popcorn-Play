@@ -7,6 +7,7 @@ import MovieCard from "./Components/Moviecard/MovieCard";
 
 function App() {
   const IMAGE_PATH = "https://image.tmdb.org/t/p/w1280";
+  const RATING_PATH = "https://api.themoviedb.org/3/movie/{movie_id}/rating";
   const API_URL = "https://api.themoviedb.org/3";
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState([]);
@@ -42,8 +43,8 @@ function App() {
   return (
     <div>
       <div
-        data-testid="movie-poster"
-        className='w-full h-[30rem] lg:h-full   object-cover bg-no-repeat bg-center'
+        data-testid='movie-poster'
+        className='w-full h-[30rem] lg:h-full object-cover bg-no-repeat bg-center'
         style={{
           backgroundImage: `url('${IMAGE_PATH}${selectedMovie.backdrop_path}')`,
         }}
@@ -78,7 +79,12 @@ function App() {
             <button className='content-end rounded bg-slate-500 w-[5rem]  '>
               Play Trailer
             </button>
-            <h1 className='text-xl font-bold text-slate-200' data-testid="movie-title">
+
+            {/* <h2>{RATING_PATH}</h2> */}
+            <h1
+              className='text-xl font-bold text-slate-200'
+              data-testid='movie-title'
+            >
               {selectedMovie.title}
             </h1>
             <p className=' flex w-[25rem] h-[8rem] text-white '>
@@ -88,7 +94,7 @@ function App() {
         </div>
       </div>
 
-      <div className='moviecards' data-testid="movie-card">
+      <div className='moviecards' data-testid='movie-card'>
         <div className='flex'>
           <h1 className='font-extrabold text-[25px] flex justify-center content-center lg:ml-[10rem]'>
             Featured Movies
